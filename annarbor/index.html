@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Ann Arbor – Mapnificent – Dynamic Public Transport Travel Time Maps</title>
+
+    <link rel="icon" type="image/png" href="/static/img/favicon.png" />
+    <link href="/static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" href="/static/vendor/leaflet/dist/leaflet.css">
+    <link href="/static/css/screen.css" rel="stylesheet" type="text/css" media="screen,projection" />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Mapnificent Isochrone Maps Travel Time Public Transport" />
+    <meta name="description" content="Mapnificent shows you areas you can reach with public transport in many cities all over the world." />
+    <script src="/static/vendor/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+      var Mapnificent_cities = (function(){
+        var cities = [
+          
+          
+          {name: "Aachen",
+          cityid: "aachen",
+          coordinates: [6.083611,50.776667],
+          },
+          
+          
+          {name: "Adelaide",
+          cityid: "adelaide",
+          coordinates: [138.6205556,-34.9305556],
+          },
+          
+          
+          {name: "Anchorage",
+          cityid: "anchorage",
+          coordinates: [-149.9,61.216667],
+          },
+          
+          
+          
+          
+          {name: "Asheville, NC",
+          cityid: "asheville",
+          coordinates: [-82.554015,35.6009452],
+          },
+          
+          
+          {name: "Atlanta",
+          cityid: "atlanta",
+          coordinates: [-84.387,33.748],
+          },
+          
+          
+          {name: "Auckland",
+          cityid: "auckland",
+          coordinates: [174.766,-36.84765],
+          },
+          
+          
+          {name: "Austin",
+          cityid: "austin",
+          coordinates: [-97.7385,30.2644],
+          },
+          
+          
+          {name: "Baltimore",
+          cityid: "baltimore",
+          coordinates: [-76.6121893,39.2903848],
+          },
+          
+          
+          {name: "Bangalore",
+          cityid: "bangalore",
+          coordinates: null,
+          },
+          
+          
+          {name: "Bangladesh",
+          cityid: "bangladesh",
+          coordinates: null,
+          },
+          
+          
+          {name: "Barcelona",
+          cityid: "barcelona",
+          coordinates: [2.170046,41.38693],
+          },
+          
+          
+          {name: "Bay Area",
+          cityid: "bayarea",
+          coordinates: [-121.99356079101562,37.34941777989473],
+          },
+          
+          
+          {name: "Belgium",
+          cityid: "belgium",
+          coordinates: [4.37255859375,50.84583876895451],
+          },
+          
+          
+          {name: "Berlin",
+          cityid: "berlin",
+          coordinates: [13.369545,52.525592],
+          },
+          
+          
+          {name: "Blacksburg",
+          cityid: "blacksburg",
+          coordinates: [-80.40618896484375,37.21994010868952],
+          },
+          
+          
+          {name: "Bologna",
+          cityid: "bologna",
+          coordinates: [11.351389,44.5075],
+          },
+          
+          
+          {name: "Bolzano/Bozen",
+          cityid: "bolzano",
+          coordinates: [11.3547582,46.4982953],
+          },
+          
+          
+          {name: "Bordeaux",
+          cityid: "bordeaux",
+          coordinates: [-0.57918,44.837789],
+          },
+          
+          
+          {name: "Boston",
+          cityid: "boston",
+          coordinates: [-71.0597732,42.3584308],
+          },
+          
+          
+          {name: "Brisbane",
+          cityid: "brisbane",
+          coordinates: [153.03,-27.48],
+          },
+          
+          
+          {name: "British Columbia",
+          cityid: "british-columbia",
+          coordinates: [-123.936389,49.164167],
+          },
+          
+          
+          {name: "Budapest",
+          cityid: "budapest",
+          coordinates: [19.040235,47.497912],
+          },
+          
+          
+          {name: "Buenos Aires",
+          cityid: "buenos-aires",
+          coordinates: [-58.381559,-34.603684],
+          },
+          
+          
+          {name: "Buffalo",
+          cityid: "buffalo",
+          coordinates: [-78.87977600097656,42.89709460316193],
+          },
+          
+          
+          {name: "Calgary",
+          cityid: "calgary",
+          coordinates: [-114.0572222,51.045],
+          },
+          
+          
+          {name: "Canberra",
+          cityid: "canberra",
+          coordinates: [149.1286843,-35.2819998],
+          },
+          
+          
+          {name: "Chennai",
+          cityid: "chennai",
+          coordinates: null,
+          },
+          
+          
+          {name: "Chiang Mai",
+          cityid: "chiang-mai",
+          coordinates: [98.981716,18.706064],
+          },
+          
+          
+          {name: "Chicago",
+          cityid: "chicago",
+          coordinates: [-87.6249,41.8747],
+          },
+          
+          
+          {name: "Christchurch",
+          cityid: "christchurch",
+          coordinates: [172.620278,-43.53],
+          },
+          
+          
+          {name: "Cincinnati",
+          cityid: "cincinnati",
+          coordinates: [-84.510647,39.101407],
+          },
+          
+          
+          {name: "Cleveland",
+          cityid: "cleveland",
+          coordinates: [-81.6954088,41.4994954],
+          },
+          
+          
+          {name: "Coimbra",
+          cityid: "coimbra",
+          coordinates: null,
+          },
+          
+          
+          {name: "Cologne",
+          cityid: "cologne",
+          coordinates: [6.961212158203125,50.93593091109999],
+          },
+          
+          
+          {name: "Colorado Springs",
+          cityid: "coloradosprings",
+          coordinates: [-104.8213634,38.8338816],
+          },
+          
+          
+          {name: "Columbus",
+          cityid: "columbus",
+          coordinates: [-82.9987942,39.9611755],
+          },
+          
+          
+          {name: "Dallas",
+          cityid: "dallas",
+          coordinates: [-96.7655,32.7994],
+          },
+          
+          
+          {name: "Darwin",
+          cityid: "darwin",
+          coordinates: [130.84150314331055,-12.461887939161151],
+          },
+          
+          
+          {name: "Delaware",
+          cityid: "delaware",
+          coordinates: [-75.36312103275235,39.217492258914845],
+          },
+          
+          
+          {name: "Denver",
+          cityid: "denver",
+          coordinates: [-104.9847034,39.7391536],
+          },
+          
+          
+          {name: "Detroit",
+          cityid: "detroit",
+          coordinates: [-83.06007385253906,42.34535034292539],
+          },
+          
+          
+          {name: "Dublin",
+          cityid: "dublin",
+          coordinates: [-6.26,53.35],
+          },
+          
+          
+          {name: "Edmonton",
+          cityid: "edmonton",
+          coordinates: [-113.490452,53.543564],
+          },
+          
+          
+          {name: "Eugene",
+          cityid: "eugene",
+          coordinates: [-123.085327148,44.0461415751],
+          },
+          
+          
+          {name: "Fayetteville",
+          cityid: "fayetteville-ar",
+          coordinates: null,
+          },
+          
+          
+          {name: "Freiburg",
+          cityid: "freiburg",
+          coordinates: [7.849881,47.994828],
+          },
+          
+          
+          {name: "genova",
+          cityid: "genova",
+          coordinates: [8.93414,44.40747],
+          },
+          
+          
+          {name: "Grenoble",
+          cityid: "grenoble",
+          coordinates: [5.7378795,45.1874928],
+          },
+          
+          
+          {name: "Halifax",
+          cityid: "halifax",
+          coordinates: [-63.602943420410156,44.65168087075498],
+          },
+          
+          
+          {name: "Hamburg",
+          cityid: "hamburg",
+          coordinates: [9.993333,53.550556],
+          },
+          
+          
+          {name: "Hampton",
+          cityid: "hampton",
+          coordinates: [-76.2835693359375,36.859295781306294],
+          },
+          
+          
+          {name: "Honolulu",
+          cityid: "honolulu",
+          coordinates: [-157.858333,21.306944],
+          },
+          
+          
+          {name: "Houston",
+          cityid: "houston",
+          coordinates: [-95.372,29.757],
+          },
+          
+          
+          {name: "Israel",
+          cityid: "israel",
+          coordinates: [34.783333,32.066667],
+          },
+          
+          
+          {name: "Kansas City",
+          cityid: "kansascity",
+          coordinates: [-94.5724,39.0949],
+          },
+          
+          
+          {name: "Karlsruhe",
+          cityid: "karlsruhe",
+          coordinates: [8.403951,49.00921],
+          },
+          
+          
+          {name: "Kuala Lumpur",
+          cityid: "kuala-lumpur",
+          coordinates: null,
+          },
+          
+          
+          {name: "Las Vegas",
+          cityid: "lasvegas",
+          coordinates: [-115.172816,36.114646],
+          },
+          
+          
+          {name: "Leipzig",
+          cityid: "leipzig",
+          coordinates: [12.37475,51.340333],
+          },
+          
+          
+          {name: "Lisboa",
+          cityid: "lisboa",
+          coordinates: [-9.139444,38.713889],
+          },
+          
+          
+          {name: "Little Rock, AR",
+          cityid: "littlerock",
+          coordinates: [-92.288,34.746],
+          },
+          
+          
+          {name: "London",
+          cityid: "london",
+          coordinates: [-0.128317,51.500515],
+          },
+          
+          
+          {name: "Los Angeles",
+          cityid: "losangeles",
+          coordinates: [-118.24759121704102,34.03871102842687],
+          },
+          
+          
+          {name: "Madison",
+          cityid: "madison",
+          coordinates: [-89.4012302,43.0730517],
+          },
+          
+          
+          {name: "Madrid",
+          cityid: "madrid",
+          coordinates: [-3.7003454,40.4166909],
+          },
+          
+          
+          {name: "Greater Manchester",
+          cityid: "manchester",
+          coordinates: [-2.2343765,53.4807125],
+          },
+          
+          
+          {name: "Melbourne",
+          cityid: "melbourne",
+          coordinates: [144.96328,-37.814107],
+          },
+          
+          
+          {name: "Mexico City",
+          cityid: "mexico-city",
+          coordinates: [-99.133208,19.432608],
+          },
+          
+          
+          {name: "Miami",
+          cityid: "miami",
+          coordinates: [-80.2235,25.7863],
+          },
+          
+          
+          {name: "Milan",
+          cityid: "milan",
+          coordinates: [9.185924,45.465422],
+          },
+          
+          
+          {name: "Milwaukee",
+          cityid: "milwaukee",
+          coordinates: [-87.9064736,43.0389025],
+          },
+          
+          
+          {name: "Minneapolis",
+          cityid: "minneapolis",
+          coordinates: [-93.2638361,44.9799654],
+          },
+          
+          
+          {name: "Montréal",
+          cityid: "montreal",
+          coordinates: [-73.564453125,45.506828120969516],
+          },
+          
+          
+          {name: "München",
+          cityid: "muenchen",
+          coordinates: [11.575556,48.137222],
+          },
+          
+          
+          {name: "Nairobi",
+          cityid: "nairobi",
+          coordinates: [36.816667,-1.283333],
+          },
+          
+          
+          {name: "Nancy",
+          cityid: "nancy",
+          coordinates: [6.184417,48.692054],
+          },
+          
+          
+          {name: "Nantes",
+          cityid: "nantes",
+          coordinates: [-1.553621,47.218371],
+          },
+          
+          
+          {name: "Nashville",
+          cityid: "nashville",
+          coordinates: [-86.77825927734375,36.17113976708937],
+          },
+          
+          
+          {name: "Netherlands",
+          cityid: "netherlands",
+          coordinates: [4.890444,52.370197],
+          },
+          
+          
+          {name: "New Orleans",
+          cityid: "neworleans",
+          coordinates: [-90.08514404296875,29.951364951739354],
+          },
+          
+          
+          {name: "New South Wales",
+          cityid: "newsouthwales",
+          coordinates: [151.051025390625,-33.87953701355922],
+          },
+          
+          
+          {name: "New York",
+          cityid: "newyork",
+          coordinates: [-73.998,40.729],
+          },
+          
+          
+          {name: "Nice",
+          cityid: "nice",
+          coordinates: [7.261953,43.710173],
+          },
+          
+          
+          {name: "Nürnberg",
+          cityid: "nuernberg",
+          coordinates: [11.078611,49.455556],
+          },
+          
+          
+          {name: "Orange County",
+          cityid: "orange-county",
+          coordinates: [-117.842826,33.645967],
+          },
+          
+          
+          {name: "Orlando",
+          cityid: "orlando",
+          coordinates: [-81.379236,28.538335],
+          },
+          
+          
+          {name: "Oslo",
+          cityid: "oslo",
+          coordinates: [10.75,59.95],
+          },
+          
+          
+          {name: "Ottawa",
+          cityid: "ottawa",
+          coordinates: [-75.69305419921875,45.41821440055197],
+          },
+          
+          
+          {name: "Palermo",
+          cityid: "palermo",
+          coordinates: [13.361267,38.115688],
+          },
+          
+          
+          {name: "Paris",
+          cityid: "paris",
+          coordinates: [2.3522219,48.856614],
+          },
+          
+          
+          {name: "Pavia",
+          cityid: "pavia",
+          coordinates: [9.158207,45.184725],
+          },
+          
+          
+          {name: "Perth",
+          cityid: "perth",
+          coordinates: [115.85898,-31.95588],
+          },
+          
+          
+          {name: "Philadelphia",
+          cityid: "philadelphia",
+          coordinates: [-75.1588,39.9471],
+          },
+          
+          
+          {name: "Pittsburgh",
+          cityid: "pittsburgh",
+          coordinates: [-79.9958864,40.4406248],
+          },
+          
+          
+          {name: "Portland",
+          cityid: "portland",
+          coordinates: [-122.6713,45.5203],
+          },
+          
+          
+          {name: "Prague",
+          cityid: "prague",
+          coordinates: [14.4667,50.0833],
+          },
+          
+          
+          {name: "Raleigh/Durham",
+          cityid: "raleigh",
+          coordinates: [-78.70742797849688,35.871803261553104],
+          },
+          
+          
+          {name: "Ravensburg",
+          cityid: "ravensburg",
+          coordinates: [9.60645,47.78441],
+          },
+          
+          
+          {name: "Regensburg",
+          cityid: "regensburg",
+          coordinates: [12.096944,49.017222],
+          },
+          
+          
+          {name: "Rennes",
+          cityid: "rennes",
+          coordinates: [-1.6802654,48.1117611],
+          },
+          
+          
+          {name: "Rhein-Neckar",
+          cityid: "rhein-neckar",
+          coordinates: [8.477522,49.483142],
+          },
+          
+          
+          {name: "Rhein-Ruhr",
+          cityid: "rhein-ruhr",
+          coordinates: [6.782778,51.225556],
+          },
+          
+          
+          {name: "Rochester",
+          cityid: "rochester",
+          coordinates: [-77.6109219,43.16103],
+          },
+          
+          
+          {name: "Rome",
+          cityid: "rome",
+          coordinates: [12.5,41.9],
+          },
+          
+          
+          {name: "Sacramento",
+          cityid: "sacramento",
+          coordinates: [-121.36871320019532,38.57769477436337],
+          },
+          
+          
+          {name: "Salem, OR",
+          cityid: "salem-or",
+          coordinates: [-123.0350963,44.9428975],
+          },
+          
+          
+          {name: "Salt Lake City",
+          cityid: "saltlakecity",
+          coordinates: [-111.8910474,40.7607793],
+          },
+          
+          
+          {name: "San Diego",
+          cityid: "sandiego",
+          coordinates: [-117.1534,32.711],
+          },
+          
+          
+          {name: "San Francisco",
+          cityid: "sanfrancisco",
+          coordinates: [-122.40314465669923,37.77302107714006],
+          },
+          
+          
+          {name: "San Jose",
+          cityid: "sanjose",
+          coordinates: [-121.8949555,37.3393857],
+          },
+          
+          
+          {name: "San Luis Obispo",
+          cityid: "sanluisobispo",
+          coordinates: [-120.6596156,35.2827524],
+          },
+          
+          
+          {name: "São Paulo",
+          cityid: "saopaulo",
+          coordinates: [-46.6388182,-23.5489433],
+          },
+          
+          
+          {name: "Sarasota",
+          cityid: "sarasota",
+          coordinates: [-82.5306527,27.3364347],
+          },
+          
+          
+          {name: "Seattle",
+          cityid: "seattle",
+          coordinates: [-122.2974175659179,47.6038889353024],
+          },
+          
+          
+          {name: "Sonoma County",
+          cityid: "sonoma",
+          coordinates: [-122.93,38.51],
+          },
+          
+          
+          {name: "Spain",
+          cityid: "spain",
+          coordinates: [-3.689557,40.405638],
+          },
+          
+          
+          {name: "Spokane",
+          cityid: "spokane",
+          coordinates: [-117.4260466,47.6587802],
+          },
+          
+          
+          {name: "Stavanger",
+          cityid: "stavanger",
+          coordinates: [5.7331073,58.9699756],
+          },
+          
+          
+          {name: "St. Louis",
+          cityid: "stlouis",
+          coordinates: [-90.224967,38.646991],
+          },
+          
+          
+          {name: "Strasbourg",
+          cityid: "strasbourg",
+          coordinates: null,
+          },
+          
+          
+          {name: "Stuttgart",
+          cityid: "stuttgart",
+          coordinates: [9.182778,48.775556],
+          },
+          
+          
+          {name: "Sweden",
+          cityid: "sweden",
+          coordinates: [18.068611,59.329444],
+          },
+          
+          
+          {name: "Switzerland",
+          cityid: "switzerland",
+          coordinates: [8.54226,47.37174],
+          },
+          
+          
+          {name: "Sydney",
+          cityid: "sydney",
+          coordinates: [151.2068896,-33.873651],
+          },
+          
+          
+          {name: "Tallinn",
+          cityid: "tallinn",
+          coordinates: [24.75353,59.43696],
+          },
+          
+          
+          {name: "Tampa",
+          cityid: "tampa",
+          coordinates: [-82.4651441,27.949436],
+          },
+          
+          
+          {name: "Tel Aviv",
+          cityid: "telaviv",
+          coordinates: null,
+          },
+          
+          
+          {name: "Thüringen",
+          cityid: "thuringia",
+          coordinates: [11.32487,50.9911],
+          },
+          
+          
+          {name: "Torino",
+          cityid: "torino",
+          coordinates: [7.6866186,45.0705621],
+          },
+          
+          
+          {name: "Toronto/Hamilton",
+          cityid: "toronto",
+          coordinates: [-79.32472228998127,43.716527305038205],
+          },
+          
+          
+          {name: "Toulouse",
+          cityid: "toulouse",
+          coordinates: [1.444,43.604],
+          },
+          
+          
+          {name: "Trento",
+          cityid: "trento",
+          coordinates: [11.12576,46.06642],
+          },
+          
+          
+          {name: "Turku",
+          cityid: "turku",
+          coordinates: [22.264824,60.45451],
+          },
+          
+          
+          {name: "Ulm",
+          cityid: "ulm",
+          coordinates: [9.984155518556122,48.39891316440014],
+          },
+          
+          
+          {name: "Valencia",
+          cityid: "valencia",
+          coordinates: [-0.3768049,39.4702393],
+          },
+          
+          
+          {name: "Vancouver",
+          cityid: "vancouver",
+          coordinates: [-123.1088,49.248523],
+          },
+          
+          
+          {name: "Vienna",
+          cityid: "vienna",
+          coordinates: [16.373064,48.20833],
+          },
+          
+          
+          {name: "Vitoria-Gasteiz",
+          cityid: "vitoria-gasteiz",
+          coordinates: [-2.6716351,42.8467181],
+          },
+          
+          
+          {name: "Warsaw",
+          cityid: "warsaw",
+          coordinates: [21.012229,52.229676],
+          },
+          
+          
+          {name: "Washington D.C.",
+          cityid: "washington",
+          coordinates: [-77.0351,38.8977],
+          },
+          
+          
+          {name: "Wellington",
+          cityid: "wellington",
+          coordinates: [174.78012084960938,-41.29328546081614],
+          },
+          
+          
+          {name: "Westfalen-Lippe",
+          cityid: "westfalen-lippe",
+          coordinates: [7.628694,51.962944],
+          },
+          
+          
+          {name: "Windsor, ON",
+          cityid: "windsor-on",
+          coordinates: [-83.0364,42.3149],
+          },
+          
+          
+          {name: "Winnipeg",
+          cityid: "winnipeg",
+          coordinates: [-97.152921,49.886083],
+          },
+          
+          
+          {name: "Yamanashi Prefecture",
+          cityid: "yamanashi",
+          coordinates: [138.568449,35.664158],
+          },
+          
+          
+          {name: "Zagreb",
+          cityid: "zagreb",
+          coordinates: [15.981919,45.81501],
+          },
+          
+          null
+        ];
+        cities = cities.slice(0, cities.length - 1);
+        return cities;
+      }());
+    </script>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-mapnificent navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mapnificent-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="">
+        <span class="text-hide">Mapnificent</span>
+        <span class="city">Ann Arbor</span>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="mapnificent-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a data-toggle="modal" href="#about">About</a>
+        </li>
+        <li>
+          <a href="/">More Cities</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a data-toggle="modal" href="#attribution">Attribution</a>
+            </li>
+            <li>
+              <a data-toggle="modal" href="#terms-of-use">Terms</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="mapnificent-map"></div>
+
+<div id="terms-of-use" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Terms of Service</h4>
+      </div>
+      <div class="modal-body">
+
+<h5>Warranties</h5>
+<strong>There are no warranties. The underlying data is generated automatically and the service is based on heuristics. Do not rely on this service.</strong>
+<p>The user agrees that the service is provided "as is" and "as available" without any warranty of any kind, express or implied, including, without limitation, the implied warranties of merchantability, fitness for a particular purpose, accuracy and noninfringement. The site's owner does not warrant that the service will be available at any given time, secure, accurate, or free of errors. The user uses the service at his or her own risk and assumes the risk that the service may provide incorrect information.</p>
+
+<p>The user shall indemnify, defend, and hold harmless the site's owner and the site's public transport data providers from and against all fines, suits, proceedings, claims, causes of action, demands, or liabilities of any kind or of any nature arising out of or in connection with the use of this service or this agreement.</p>
+
+<h5>Copyrights</h5>
+<p>The data that this service is using is protected under copyright law. The copyright owners of the currently used data are listed where appropriate. Trademarks belong to their rightful owners.</p>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="about" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title text-center">
+          <img src="/static/img/mapnificent_big.png" alt="Mapnificent" class="img-responsive"/>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Mapnificent shows you the area you can reach with public transport from any point in a given time. It is available for major cities in the US and world wide.
+        </p>
+        <p>
+          This is the new version of Mapnificent with many missing features!
+          <a href="https://github.com/mapnificent/mapnificent">Find the source on GitHub and help out!</a>
+        </p>
+        <h3>Want to add your city?</h3>
+        <p>
+          <a href="https://github.com/mapnificent/mapnificent_cities/blob/master/README.md">
+             Follow this guide!
+          </a>
+        </p>
+        <p>
+          Mapnificent was originally inspired by mySociety's <a href="https://mapumental.com">Mapumental</a>.
+        </p>
+        <address id="contact">
+          <p>Mapnificent was created by <a class="url" href="http://stefanwehrmeyer.com" title="Stefan Wehrmeyer">Stefan Wehrmeyer</a>.</p>
+          <p>
+            <a class="email" href="mailto:mail@mapnificent.net">mail@mapnificent.net</a>
+          </p>
+          <p>
+            <a href="https://stefanwehrmeyer.com/#impressum">Impressum</a>
+          </p>
+        </address>
+        <p>
+          Follow <a href="http://twitter.com/mapnificent">@mapnificent on Twitter!</a>
+        </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="load-progress" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          Loading necessary data...
+        </h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="attribution" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">
+          Attribution
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>Data Copyright Holders are:</p>
+        <p>(c) <a href="http://www.theride.org/">Ann Arbor Transportation Authority</a></p>
+
+        <hr/>
+        <p>
+          Last update: 2020-03-10 10:24 UTC
+        </p>
+        <small>For journey planning services see links above.</small>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="/static/vendor/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/vendor/leaflet-hash/leaflet-hash.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/vendor/bytebuffer/dist/ByteBufferAB.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/vendor/protobuf/dist/ProtoBuf.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/quadtree.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/mapnificent.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+$(function(){
+  $('#mapnificent-map').height($(window).height());
+  var city = {
+    cityid: "annarbor",
+    cityname: "Ann Arbor",
+    coordinates: [-83.7263294,42.2708716],
+    options: {"calculateOnDrag":true,"estimatedMaxCalculateCalls":36000} || {},
+    zoom: 12
+  };
+
+  var tileUrl = '//cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
+
+  L.Icon.Default.imagePath = '/static/vendor/leaflet/dist/images/';
+  var map = L.map('mapnificent-map', {
+    center: [city.coordinates[1], city.coordinates[0]],
+    zoom: city.zoom
+  });
+
+  defaultTileLayer = new L.TileLayer(tileUrl, {
+    maxZoom: 17, minZoom: 4,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'});
+  map.attributionControl.setPrefix("");
+  map.addLayer(defaultTileLayer);
+
+  var mapnificent = new Mapnificent(map, city, {
+    baseurl: '/'
+  });
+
+  mapnificent.init();
+});
+
+</script>
+
+
+   <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+   <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-15128105-1', 'auto');
+     ga('send', 'pageview');
+
+   </script>
+
+  </body>
+</html>

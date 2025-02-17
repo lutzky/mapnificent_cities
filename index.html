@@ -1,0 +1,3706 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Mapnificent – Dynamic Public Transport Travel Time Maps</title>
+
+    <link rel="icon" type="image/png" href="/static/img/favicon.png" />
+    <link href="/static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" href="/static/vendor/leaflet/dist/leaflet.css">
+    <link href="/static/css/screen.css" rel="stylesheet" type="text/css" media="screen,projection" />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Mapnificent Isochrone Maps Travel Time Public Transport" />
+    <meta name="description" content="Mapnificent shows you areas you can reach with public transport in many cities all over the world." />
+    <script src="/static/vendor/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+      var Mapnificent_cities = (function(){
+        var cities = [
+          
+          
+          {name: "Aachen",
+          cityid: "aachen",
+          coordinates: [6.083611,50.776667],
+          },
+          
+          
+          {name: "Adelaide",
+          cityid: "adelaide",
+          coordinates: [138.6205556,-34.9305556],
+          },
+          
+          
+          {name: "Anchorage",
+          cityid: "anchorage",
+          coordinates: [-149.9,61.216667],
+          },
+          
+          
+          {name: "Ann Arbor",
+          cityid: "annarbor",
+          coordinates: [-83.7263294,42.2708716],
+          },
+          
+          
+          {name: "Asheville, NC",
+          cityid: "asheville",
+          coordinates: [-82.554015,35.6009452],
+          },
+          
+          
+          {name: "Atlanta",
+          cityid: "atlanta",
+          coordinates: [-84.387,33.748],
+          },
+          
+          
+          {name: "Auckland",
+          cityid: "auckland",
+          coordinates: [174.766,-36.84765],
+          },
+          
+          
+          {name: "Austin",
+          cityid: "austin",
+          coordinates: [-97.7385,30.2644],
+          },
+          
+          
+          {name: "Baltimore",
+          cityid: "baltimore",
+          coordinates: [-76.6121893,39.2903848],
+          },
+          
+          
+          {name: "Bangalore",
+          cityid: "bangalore",
+          coordinates: null,
+          },
+          
+          
+          {name: "Bangladesh",
+          cityid: "bangladesh",
+          coordinates: null,
+          },
+          
+          
+          {name: "Barcelona",
+          cityid: "barcelona",
+          coordinates: [2.170046,41.38693],
+          },
+          
+          
+          {name: "Bay Area",
+          cityid: "bayarea",
+          coordinates: [-121.99356079101562,37.34941777989473],
+          },
+          
+          
+          {name: "Belgium",
+          cityid: "belgium",
+          coordinates: [4.37255859375,50.84583876895451],
+          },
+          
+          
+          {name: "Berlin",
+          cityid: "berlin",
+          coordinates: [13.369545,52.525592],
+          },
+          
+          
+          {name: "Blacksburg",
+          cityid: "blacksburg",
+          coordinates: [-80.40618896484375,37.21994010868952],
+          },
+          
+          
+          {name: "Bologna",
+          cityid: "bologna",
+          coordinates: [11.351389,44.5075],
+          },
+          
+          
+          {name: "Bolzano/Bozen",
+          cityid: "bolzano",
+          coordinates: [11.3547582,46.4982953],
+          },
+          
+          
+          {name: "Bordeaux",
+          cityid: "bordeaux",
+          coordinates: [-0.57918,44.837789],
+          },
+          
+          
+          {name: "Boston",
+          cityid: "boston",
+          coordinates: [-71.0597732,42.3584308],
+          },
+          
+          
+          {name: "Brisbane",
+          cityid: "brisbane",
+          coordinates: [153.03,-27.48],
+          },
+          
+          
+          {name: "British Columbia",
+          cityid: "british-columbia",
+          coordinates: [-123.936389,49.164167],
+          },
+          
+          
+          {name: "Budapest",
+          cityid: "budapest",
+          coordinates: [19.040235,47.497912],
+          },
+          
+          
+          {name: "Buenos Aires",
+          cityid: "buenos-aires",
+          coordinates: [-58.381559,-34.603684],
+          },
+          
+          
+          {name: "Buffalo",
+          cityid: "buffalo",
+          coordinates: [-78.87977600097656,42.89709460316193],
+          },
+          
+          
+          {name: "Calgary",
+          cityid: "calgary",
+          coordinates: [-114.0572222,51.045],
+          },
+          
+          
+          {name: "Canberra",
+          cityid: "canberra",
+          coordinates: [149.1286843,-35.2819998],
+          },
+          
+          
+          {name: "Chennai",
+          cityid: "chennai",
+          coordinates: null,
+          },
+          
+          
+          {name: "Chiang Mai",
+          cityid: "chiang-mai",
+          coordinates: [98.981716,18.706064],
+          },
+          
+          
+          {name: "Chicago",
+          cityid: "chicago",
+          coordinates: [-87.6249,41.8747],
+          },
+          
+          
+          {name: "Christchurch",
+          cityid: "christchurch",
+          coordinates: [172.620278,-43.53],
+          },
+          
+          
+          {name: "Cincinnati",
+          cityid: "cincinnati",
+          coordinates: [-84.510647,39.101407],
+          },
+          
+          
+          {name: "Cleveland",
+          cityid: "cleveland",
+          coordinates: [-81.6954088,41.4994954],
+          },
+          
+          
+          {name: "Coimbra",
+          cityid: "coimbra",
+          coordinates: null,
+          },
+          
+          
+          {name: "Cologne",
+          cityid: "cologne",
+          coordinates: [6.961212158203125,50.93593091109999],
+          },
+          
+          
+          {name: "Colorado Springs",
+          cityid: "coloradosprings",
+          coordinates: [-104.8213634,38.8338816],
+          },
+          
+          
+          {name: "Columbus",
+          cityid: "columbus",
+          coordinates: [-82.9987942,39.9611755],
+          },
+          
+          
+          {name: "Dallas",
+          cityid: "dallas",
+          coordinates: [-96.7655,32.7994],
+          },
+          
+          
+          {name: "Darwin",
+          cityid: "darwin",
+          coordinates: [130.84150314331055,-12.461887939161151],
+          },
+          
+          
+          {name: "Delaware",
+          cityid: "delaware",
+          coordinates: [-75.36312103275235,39.217492258914845],
+          },
+          
+          
+          {name: "Denver",
+          cityid: "denver",
+          coordinates: [-104.9847034,39.7391536],
+          },
+          
+          
+          {name: "Detroit",
+          cityid: "detroit",
+          coordinates: [-83.06007385253906,42.34535034292539],
+          },
+          
+          
+          {name: "Dublin",
+          cityid: "dublin",
+          coordinates: [-6.26,53.35],
+          },
+          
+          
+          {name: "Edmonton",
+          cityid: "edmonton",
+          coordinates: [-113.490452,53.543564],
+          },
+          
+          
+          {name: "Eugene",
+          cityid: "eugene",
+          coordinates: [-123.085327148,44.0461415751],
+          },
+          
+          
+          {name: "Fayetteville",
+          cityid: "fayetteville-ar",
+          coordinates: null,
+          },
+          
+          
+          {name: "Freiburg",
+          cityid: "freiburg",
+          coordinates: [7.849881,47.994828],
+          },
+          
+          
+          {name: "genova",
+          cityid: "genova",
+          coordinates: [8.93414,44.40747],
+          },
+          
+          
+          {name: "Grenoble",
+          cityid: "grenoble",
+          coordinates: [5.7378795,45.1874928],
+          },
+          
+          
+          {name: "Halifax",
+          cityid: "halifax",
+          coordinates: [-63.602943420410156,44.65168087075498],
+          },
+          
+          
+          {name: "Hamburg",
+          cityid: "hamburg",
+          coordinates: [9.993333,53.550556],
+          },
+          
+          
+          {name: "Hampton",
+          cityid: "hampton",
+          coordinates: [-76.2835693359375,36.859295781306294],
+          },
+          
+          
+          {name: "Honolulu",
+          cityid: "honolulu",
+          coordinates: [-157.858333,21.306944],
+          },
+          
+          
+          {name: "Houston",
+          cityid: "houston",
+          coordinates: [-95.372,29.757],
+          },
+          
+          
+          {name: "Israel",
+          cityid: "israel",
+          coordinates: [34.783333,32.066667],
+          },
+          
+          
+          {name: "Kansas City",
+          cityid: "kansascity",
+          coordinates: [-94.5724,39.0949],
+          },
+          
+          
+          {name: "Karlsruhe",
+          cityid: "karlsruhe",
+          coordinates: [8.403951,49.00921],
+          },
+          
+          
+          {name: "Kuala Lumpur",
+          cityid: "kuala-lumpur",
+          coordinates: null,
+          },
+          
+          
+          {name: "Las Vegas",
+          cityid: "lasvegas",
+          coordinates: [-115.172816,36.114646],
+          },
+          
+          
+          {name: "Leipzig",
+          cityid: "leipzig",
+          coordinates: [12.37475,51.340333],
+          },
+          
+          
+          {name: "Lisboa",
+          cityid: "lisboa",
+          coordinates: [-9.139444,38.713889],
+          },
+          
+          
+          {name: "Little Rock, AR",
+          cityid: "littlerock",
+          coordinates: [-92.288,34.746],
+          },
+          
+          
+          {name: "London",
+          cityid: "london",
+          coordinates: [-0.128317,51.500515],
+          },
+          
+          
+          {name: "Los Angeles",
+          cityid: "losangeles",
+          coordinates: [-118.24759121704102,34.03871102842687],
+          },
+          
+          
+          {name: "Madison",
+          cityid: "madison",
+          coordinates: [-89.4012302,43.0730517],
+          },
+          
+          
+          {name: "Madrid",
+          cityid: "madrid",
+          coordinates: [-3.7003454,40.4166909],
+          },
+          
+          
+          {name: "Greater Manchester",
+          cityid: "manchester",
+          coordinates: [-2.2343765,53.4807125],
+          },
+          
+          
+          {name: "Melbourne",
+          cityid: "melbourne",
+          coordinates: [144.96328,-37.814107],
+          },
+          
+          
+          {name: "Mexico City",
+          cityid: "mexico-city",
+          coordinates: [-99.133208,19.432608],
+          },
+          
+          
+          {name: "Miami",
+          cityid: "miami",
+          coordinates: [-80.2235,25.7863],
+          },
+          
+          
+          {name: "Milan",
+          cityid: "milan",
+          coordinates: [9.185924,45.465422],
+          },
+          
+          
+          {name: "Milwaukee",
+          cityid: "milwaukee",
+          coordinates: [-87.9064736,43.0389025],
+          },
+          
+          
+          {name: "Minneapolis",
+          cityid: "minneapolis",
+          coordinates: [-93.2638361,44.9799654],
+          },
+          
+          
+          {name: "Montréal",
+          cityid: "montreal",
+          coordinates: [-73.564453125,45.506828120969516],
+          },
+          
+          
+          {name: "München",
+          cityid: "muenchen",
+          coordinates: [11.575556,48.137222],
+          },
+          
+          
+          {name: "Nairobi",
+          cityid: "nairobi",
+          coordinates: [36.816667,-1.283333],
+          },
+          
+          
+          {name: "Nancy",
+          cityid: "nancy",
+          coordinates: [6.184417,48.692054],
+          },
+          
+          
+          {name: "Nantes",
+          cityid: "nantes",
+          coordinates: [-1.553621,47.218371],
+          },
+          
+          
+          {name: "Nashville",
+          cityid: "nashville",
+          coordinates: [-86.77825927734375,36.17113976708937],
+          },
+          
+          
+          {name: "Netherlands",
+          cityid: "netherlands",
+          coordinates: [4.890444,52.370197],
+          },
+          
+          
+          {name: "New Orleans",
+          cityid: "neworleans",
+          coordinates: [-90.08514404296875,29.951364951739354],
+          },
+          
+          
+          {name: "New South Wales",
+          cityid: "newsouthwales",
+          coordinates: [151.051025390625,-33.87953701355922],
+          },
+          
+          
+          {name: "New York",
+          cityid: "newyork",
+          coordinates: [-73.998,40.729],
+          },
+          
+          
+          {name: "Nice",
+          cityid: "nice",
+          coordinates: [7.261953,43.710173],
+          },
+          
+          
+          {name: "Nürnberg",
+          cityid: "nuernberg",
+          coordinates: [11.078611,49.455556],
+          },
+          
+          
+          {name: "Orange County",
+          cityid: "orange-county",
+          coordinates: [-117.842826,33.645967],
+          },
+          
+          
+          {name: "Orlando",
+          cityid: "orlando",
+          coordinates: [-81.379236,28.538335],
+          },
+          
+          
+          {name: "Oslo",
+          cityid: "oslo",
+          coordinates: [10.75,59.95],
+          },
+          
+          
+          {name: "Ottawa",
+          cityid: "ottawa",
+          coordinates: [-75.69305419921875,45.41821440055197],
+          },
+          
+          
+          {name: "Palermo",
+          cityid: "palermo",
+          coordinates: [13.361267,38.115688],
+          },
+          
+          
+          {name: "Paris",
+          cityid: "paris",
+          coordinates: [2.3522219,48.856614],
+          },
+          
+          
+          {name: "Pavia",
+          cityid: "pavia",
+          coordinates: [9.158207,45.184725],
+          },
+          
+          
+          {name: "Perth",
+          cityid: "perth",
+          coordinates: [115.85898,-31.95588],
+          },
+          
+          
+          {name: "Philadelphia",
+          cityid: "philadelphia",
+          coordinates: [-75.1588,39.9471],
+          },
+          
+          
+          {name: "Pittsburgh",
+          cityid: "pittsburgh",
+          coordinates: [-79.9958864,40.4406248],
+          },
+          
+          
+          {name: "Portland",
+          cityid: "portland",
+          coordinates: [-122.6713,45.5203],
+          },
+          
+          
+          {name: "Prague",
+          cityid: "prague",
+          coordinates: [14.4667,50.0833],
+          },
+          
+          
+          {name: "Raleigh/Durham",
+          cityid: "raleigh",
+          coordinates: [-78.70742797849688,35.871803261553104],
+          },
+          
+          
+          {name: "Ravensburg",
+          cityid: "ravensburg",
+          coordinates: [9.60645,47.78441],
+          },
+          
+          
+          {name: "Regensburg",
+          cityid: "regensburg",
+          coordinates: [12.096944,49.017222],
+          },
+          
+          
+          {name: "Rennes",
+          cityid: "rennes",
+          coordinates: [-1.6802654,48.1117611],
+          },
+          
+          
+          {name: "Rhein-Neckar",
+          cityid: "rhein-neckar",
+          coordinates: [8.477522,49.483142],
+          },
+          
+          
+          {name: "Rhein-Ruhr",
+          cityid: "rhein-ruhr",
+          coordinates: [6.782778,51.225556],
+          },
+          
+          
+          {name: "Rochester",
+          cityid: "rochester",
+          coordinates: [-77.6109219,43.16103],
+          },
+          
+          
+          {name: "Rome",
+          cityid: "rome",
+          coordinates: [12.5,41.9],
+          },
+          
+          
+          {name: "Sacramento",
+          cityid: "sacramento",
+          coordinates: [-121.36871320019532,38.57769477436337],
+          },
+          
+          
+          {name: "Salem, OR",
+          cityid: "salem-or",
+          coordinates: [-123.0350963,44.9428975],
+          },
+          
+          
+          {name: "Salt Lake City",
+          cityid: "saltlakecity",
+          coordinates: [-111.8910474,40.7607793],
+          },
+          
+          
+          {name: "San Diego",
+          cityid: "sandiego",
+          coordinates: [-117.1534,32.711],
+          },
+          
+          
+          {name: "San Francisco",
+          cityid: "sanfrancisco",
+          coordinates: [-122.40314465669923,37.77302107714006],
+          },
+          
+          
+          {name: "San Jose",
+          cityid: "sanjose",
+          coordinates: [-121.8949555,37.3393857],
+          },
+          
+          
+          {name: "San Luis Obispo",
+          cityid: "sanluisobispo",
+          coordinates: [-120.6596156,35.2827524],
+          },
+          
+          
+          {name: "São Paulo",
+          cityid: "saopaulo",
+          coordinates: [-46.6388182,-23.5489433],
+          },
+          
+          
+          {name: "Sarasota",
+          cityid: "sarasota",
+          coordinates: [-82.5306527,27.3364347],
+          },
+          
+          
+          {name: "Seattle",
+          cityid: "seattle",
+          coordinates: [-122.2974175659179,47.6038889353024],
+          },
+          
+          
+          {name: "Sonoma County",
+          cityid: "sonoma",
+          coordinates: [-122.93,38.51],
+          },
+          
+          
+          {name: "Spain",
+          cityid: "spain",
+          coordinates: [-3.689557,40.405638],
+          },
+          
+          
+          {name: "Spokane",
+          cityid: "spokane",
+          coordinates: [-117.4260466,47.6587802],
+          },
+          
+          
+          {name: "Stavanger",
+          cityid: "stavanger",
+          coordinates: [5.7331073,58.9699756],
+          },
+          
+          
+          {name: "St. Louis",
+          cityid: "stlouis",
+          coordinates: [-90.224967,38.646991],
+          },
+          
+          
+          {name: "Strasbourg",
+          cityid: "strasbourg",
+          coordinates: null,
+          },
+          
+          
+          {name: "Stuttgart",
+          cityid: "stuttgart",
+          coordinates: [9.182778,48.775556],
+          },
+          
+          
+          {name: "Sweden",
+          cityid: "sweden",
+          coordinates: [18.068611,59.329444],
+          },
+          
+          
+          {name: "Switzerland",
+          cityid: "switzerland",
+          coordinates: [8.54226,47.37174],
+          },
+          
+          
+          {name: "Sydney",
+          cityid: "sydney",
+          coordinates: [151.2068896,-33.873651],
+          },
+          
+          
+          {name: "Tallinn",
+          cityid: "tallinn",
+          coordinates: [24.75353,59.43696],
+          },
+          
+          
+          {name: "Tampa",
+          cityid: "tampa",
+          coordinates: [-82.4651441,27.949436],
+          },
+          
+          
+          {name: "Tel Aviv",
+          cityid: "telaviv",
+          coordinates: null,
+          },
+          
+          
+          {name: "Thüringen",
+          cityid: "thuringia",
+          coordinates: [11.32487,50.9911],
+          },
+          
+          
+          {name: "Torino",
+          cityid: "torino",
+          coordinates: [7.6866186,45.0705621],
+          },
+          
+          
+          {name: "Toronto/Hamilton",
+          cityid: "toronto",
+          coordinates: [-79.32472228998127,43.716527305038205],
+          },
+          
+          
+          {name: "Toulouse",
+          cityid: "toulouse",
+          coordinates: [1.444,43.604],
+          },
+          
+          
+          {name: "Trento",
+          cityid: "trento",
+          coordinates: [11.12576,46.06642],
+          },
+          
+          
+          {name: "Turku",
+          cityid: "turku",
+          coordinates: [22.264824,60.45451],
+          },
+          
+          
+          {name: "Ulm",
+          cityid: "ulm",
+          coordinates: [9.984155518556122,48.39891316440014],
+          },
+          
+          
+          {name: "Valencia",
+          cityid: "valencia",
+          coordinates: [-0.3768049,39.4702393],
+          },
+          
+          
+          {name: "Vancouver",
+          cityid: "vancouver",
+          coordinates: [-123.1088,49.248523],
+          },
+          
+          
+          {name: "Vienna",
+          cityid: "vienna",
+          coordinates: [16.373064,48.20833],
+          },
+          
+          
+          {name: "Vitoria-Gasteiz",
+          cityid: "vitoria-gasteiz",
+          coordinates: [-2.6716351,42.8467181],
+          },
+          
+          
+          {name: "Warsaw",
+          cityid: "warsaw",
+          coordinates: [21.012229,52.229676],
+          },
+          
+          
+          {name: "Washington D.C.",
+          cityid: "washington",
+          coordinates: [-77.0351,38.8977],
+          },
+          
+          
+          {name: "Wellington",
+          cityid: "wellington",
+          coordinates: [174.78012084960938,-41.29328546081614],
+          },
+          
+          
+          {name: "Westfalen-Lippe",
+          cityid: "westfalen-lippe",
+          coordinates: [7.628694,51.962944],
+          },
+          
+          
+          {name: "Windsor, ON",
+          cityid: "windsor-on",
+          coordinates: [-83.0364,42.3149],
+          },
+          
+          
+          {name: "Winnipeg",
+          cityid: "winnipeg",
+          coordinates: [-97.152921,49.886083],
+          },
+          
+          
+          {name: "Yamanashi Prefecture",
+          cityid: "yamanashi",
+          coordinates: [138.568449,35.664158],
+          },
+          
+          
+          {name: "Zagreb",
+          cityid: "zagreb",
+          coordinates: [15.981919,45.81501],
+          },
+          
+          null
+        ];
+        cities = cities.slice(0, cities.length - 1);
+        return cities;
+      }());
+    </script>
+  </head>
+  <body>
+
+    <div class="index-page">
+  <div class="container">
+    <div class="jumbotron index-page">
+      <h1>
+        <img src="/static/img/mapnificent_big.png" alt="Mapnificent" class="img-responsive">
+      </h1>
+      <p>
+        Shows you areas you can reach with public transport in a given time.
+      </p>
+      <p>
+        <a href="#map" class="btn btn-mapnificent btn-lg smooth-scroll" role="button">
+          See all the cities
+        </a>
+        <a href="#about" data-toggle="modal" class="btn btn-default btn-lg" role="button">
+          About
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="map"></div>
+
+<div class="container">
+  <div id="list">
+    <h3>All Mapnificent Cities</h3>
+    <div class="row">
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/aachen/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Aachen"/> -->
+            <div class="caption">
+              <h3>Aachen</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/adelaide/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Adelaide"/> -->
+            <div class="caption">
+              <h3>Adelaide</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/anchorage/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Anchorage"/> -->
+            <div class="caption">
+              <h3>Anchorage</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/annarbor/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Ann Arbor"/> -->
+            <div class="caption">
+              <h3>Ann Arbor</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/asheville/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Asheville, NC"/> -->
+            <div class="caption">
+              <h3>Asheville, NC</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/atlanta/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Atlanta"/> -->
+            <div class="caption">
+              <h3>Atlanta</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/auckland/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Auckland"/> -->
+            <div class="caption">
+              <h3>Auckland</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/austin/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Austin"/> -->
+            <div class="caption">
+              <h3>Austin</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/baltimore/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Baltimore"/> -->
+            <div class="caption">
+              <h3>Baltimore</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/barcelona/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Barcelona"/> -->
+            <div class="caption">
+              <h3>Barcelona</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/bayarea/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Bay Area"/> -->
+            <div class="caption">
+              <h3>Bay Area</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/belgium/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Belgium"/> -->
+            <div class="caption">
+              <h3>Belgium</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/berlin/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Berlin"/> -->
+            <div class="caption">
+              <h3>Berlin</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/blacksburg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Blacksburg"/> -->
+            <div class="caption">
+              <h3>Blacksburg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/bologna/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Bologna"/> -->
+            <div class="caption">
+              <h3>Bologna</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/bolzano/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Bolzano/Bozen"/> -->
+            <div class="caption">
+              <h3>Bolzano/Bozen</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/bordeaux/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Bordeaux"/> -->
+            <div class="caption">
+              <h3>Bordeaux</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/boston/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Boston"/> -->
+            <div class="caption">
+              <h3>Boston</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/brisbane/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Brisbane"/> -->
+            <div class="caption">
+              <h3>Brisbane</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/british-columbia/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent British Columbia"/> -->
+            <div class="caption">
+              <h3>British Columbia</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/budapest/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Budapest"/> -->
+            <div class="caption">
+              <h3>Budapest</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/buenos-aires/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Buenos Aires"/> -->
+            <div class="caption">
+              <h3>Buenos Aires</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/buffalo/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Buffalo"/> -->
+            <div class="caption">
+              <h3>Buffalo</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/calgary/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Calgary"/> -->
+            <div class="caption">
+              <h3>Calgary</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/canberra/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Canberra"/> -->
+            <div class="caption">
+              <h3>Canberra</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/chiang-mai/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Chiang Mai"/> -->
+            <div class="caption">
+              <h3>Chiang Mai</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/chicago/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Chicago"/> -->
+            <div class="caption">
+              <h3>Chicago</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/christchurch/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Christchurch"/> -->
+            <div class="caption">
+              <h3>Christchurch</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/cincinnati/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Cincinnati"/> -->
+            <div class="caption">
+              <h3>Cincinnati</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/cleveland/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Cleveland"/> -->
+            <div class="caption">
+              <h3>Cleveland</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/coimbra/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Coimbra"/> -->
+            <div class="caption">
+              <h3>Coimbra</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/cologne/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Cologne"/> -->
+            <div class="caption">
+              <h3>Cologne</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/coloradosprings/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Colorado Springs"/> -->
+            <div class="caption">
+              <h3>Colorado Springs</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/columbus/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Columbus"/> -->
+            <div class="caption">
+              <h3>Columbus</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/dallas/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Dallas"/> -->
+            <div class="caption">
+              <h3>Dallas</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/darwin/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Darwin"/> -->
+            <div class="caption">
+              <h3>Darwin</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/delaware/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Delaware"/> -->
+            <div class="caption">
+              <h3>Delaware</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/denver/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Denver"/> -->
+            <div class="caption">
+              <h3>Denver</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/detroit/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Detroit"/> -->
+            <div class="caption">
+              <h3>Detroit</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/dublin/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Dublin"/> -->
+            <div class="caption">
+              <h3>Dublin</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/edmonton/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Edmonton"/> -->
+            <div class="caption">
+              <h3>Edmonton</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/eugene/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Eugene"/> -->
+            <div class="caption">
+              <h3>Eugene</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/fayetteville-ar/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Fayetteville"/> -->
+            <div class="caption">
+              <h3>Fayetteville</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/freiburg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Freiburg"/> -->
+            <div class="caption">
+              <h3>Freiburg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/genova/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent genova"/> -->
+            <div class="caption">
+              <h3>genova</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/grenoble/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Grenoble"/> -->
+            <div class="caption">
+              <h3>Grenoble</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/halifax/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Halifax"/> -->
+            <div class="caption">
+              <h3>Halifax</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/hamburg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Hamburg"/> -->
+            <div class="caption">
+              <h3>Hamburg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/hampton/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Hampton"/> -->
+            <div class="caption">
+              <h3>Hampton</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/honolulu/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Honolulu"/> -->
+            <div class="caption">
+              <h3>Honolulu</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/houston/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Houston"/> -->
+            <div class="caption">
+              <h3>Houston</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/israel/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Israel"/> -->
+            <div class="caption">
+              <h3>Israel</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/kansascity/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Kansas City"/> -->
+            <div class="caption">
+              <h3>Kansas City</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/karlsruhe/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Karlsruhe"/> -->
+            <div class="caption">
+              <h3>Karlsruhe</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/kuala-lumpur/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Kuala Lumpur"/> -->
+            <div class="caption">
+              <h3>Kuala Lumpur</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/lasvegas/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Las Vegas"/> -->
+            <div class="caption">
+              <h3>Las Vegas</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/leipzig/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Leipzig"/> -->
+            <div class="caption">
+              <h3>Leipzig</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/lisboa/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Lisboa"/> -->
+            <div class="caption">
+              <h3>Lisboa</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/littlerock/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Little Rock, AR"/> -->
+            <div class="caption">
+              <h3>Little Rock, AR</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/london/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent London"/> -->
+            <div class="caption">
+              <h3>London</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/losangeles/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Los Angeles"/> -->
+            <div class="caption">
+              <h3>Los Angeles</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/madison/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Madison"/> -->
+            <div class="caption">
+              <h3>Madison</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/madrid/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Madrid"/> -->
+            <div class="caption">
+              <h3>Madrid</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/manchester/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Greater Manchester"/> -->
+            <div class="caption">
+              <h3>Greater Manchester</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/melbourne/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Melbourne"/> -->
+            <div class="caption">
+              <h3>Melbourne</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/mexico-city/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Mexico City"/> -->
+            <div class="caption">
+              <h3>Mexico City</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/miami/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Miami"/> -->
+            <div class="caption">
+              <h3>Miami</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/milan/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Milan"/> -->
+            <div class="caption">
+              <h3>Milan</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/milwaukee/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Milwaukee"/> -->
+            <div class="caption">
+              <h3>Milwaukee</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/minneapolis/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Minneapolis"/> -->
+            <div class="caption">
+              <h3>Minneapolis</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/montreal/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Montréal"/> -->
+            <div class="caption">
+              <h3>Montréal</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/muenchen/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent München"/> -->
+            <div class="caption">
+              <h3>München</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nairobi/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nairobi"/> -->
+            <div class="caption">
+              <h3>Nairobi</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nancy/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nancy"/> -->
+            <div class="caption">
+              <h3>Nancy</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nantes/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nantes"/> -->
+            <div class="caption">
+              <h3>Nantes</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nashville/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nashville"/> -->
+            <div class="caption">
+              <h3>Nashville</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/netherlands/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Netherlands"/> -->
+            <div class="caption">
+              <h3>Netherlands</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/newyork/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent New York"/> -->
+            <div class="caption">
+              <h3>New York</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nice/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nice"/> -->
+            <div class="caption">
+              <h3>Nice</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/nuernberg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Nürnberg"/> -->
+            <div class="caption">
+              <h3>Nürnberg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/orange-county/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Orange County"/> -->
+            <div class="caption">
+              <h3>Orange County</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/orlando/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Orlando"/> -->
+            <div class="caption">
+              <h3>Orlando</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/oslo/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Oslo"/> -->
+            <div class="caption">
+              <h3>Oslo</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/ottawa/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Ottawa"/> -->
+            <div class="caption">
+              <h3>Ottawa</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/palermo/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Palermo"/> -->
+            <div class="caption">
+              <h3>Palermo</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/paris/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Paris"/> -->
+            <div class="caption">
+              <h3>Paris</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/pavia/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Pavia"/> -->
+            <div class="caption">
+              <h3>Pavia</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/perth/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Perth"/> -->
+            <div class="caption">
+              <h3>Perth</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/philadelphia/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Philadelphia"/> -->
+            <div class="caption">
+              <h3>Philadelphia</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/pittsburgh/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Pittsburgh"/> -->
+            <div class="caption">
+              <h3>Pittsburgh</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/portland/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Portland"/> -->
+            <div class="caption">
+              <h3>Portland</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/prague/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Prague"/> -->
+            <div class="caption">
+              <h3>Prague</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/raleigh/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Raleigh/Durham"/> -->
+            <div class="caption">
+              <h3>Raleigh/Durham</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/ravensburg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Ravensburg"/> -->
+            <div class="caption">
+              <h3>Ravensburg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/regensburg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Regensburg"/> -->
+            <div class="caption">
+              <h3>Regensburg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/rennes/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Rennes"/> -->
+            <div class="caption">
+              <h3>Rennes</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/rhein-neckar/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Rhein-Neckar"/> -->
+            <div class="caption">
+              <h3>Rhein-Neckar</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/rhein-ruhr/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Rhein-Ruhr"/> -->
+            <div class="caption">
+              <h3>Rhein-Ruhr</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/rochester/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Rochester"/> -->
+            <div class="caption">
+              <h3>Rochester</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/rome/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Rome"/> -->
+            <div class="caption">
+              <h3>Rome</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sacramento/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Sacramento"/> -->
+            <div class="caption">
+              <h3>Sacramento</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/salem-or/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Salem, OR"/> -->
+            <div class="caption">
+              <h3>Salem, OR</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/saltlakecity/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Salt Lake City"/> -->
+            <div class="caption">
+              <h3>Salt Lake City</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sandiego/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent San Diego"/> -->
+            <div class="caption">
+              <h3>San Diego</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sanluisobispo/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent San Luis Obispo"/> -->
+            <div class="caption">
+              <h3>San Luis Obispo</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/saopaulo/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent São Paulo"/> -->
+            <div class="caption">
+              <h3>São Paulo</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sarasota/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Sarasota"/> -->
+            <div class="caption">
+              <h3>Sarasota</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/seattle/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Seattle"/> -->
+            <div class="caption">
+              <h3>Seattle</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sonoma/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Sonoma County"/> -->
+            <div class="caption">
+              <h3>Sonoma County</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/spain/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Spain"/> -->
+            <div class="caption">
+              <h3>Spain</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/spokane/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Spokane"/> -->
+            <div class="caption">
+              <h3>Spokane</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/stavanger/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Stavanger"/> -->
+            <div class="caption">
+              <h3>Stavanger</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/stlouis/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent St. Louis"/> -->
+            <div class="caption">
+              <h3>St. Louis</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/strasbourg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Strasbourg"/> -->
+            <div class="caption">
+              <h3>Strasbourg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/stuttgart/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Stuttgart"/> -->
+            <div class="caption">
+              <h3>Stuttgart</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/sweden/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Sweden"/> -->
+            <div class="caption">
+              <h3>Sweden</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/switzerland/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Switzerland"/> -->
+            <div class="caption">
+              <h3>Switzerland</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/tallinn/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Tallinn"/> -->
+            <div class="caption">
+              <h3>Tallinn</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/tampa/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Tampa"/> -->
+            <div class="caption">
+              <h3>Tampa</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/telaviv/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Tel Aviv"/> -->
+            <div class="caption">
+              <h3>Tel Aviv</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/thuringia/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Thüringen"/> -->
+            <div class="caption">
+              <h3>Thüringen</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/torino/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Torino"/> -->
+            <div class="caption">
+              <h3>Torino</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/toronto/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Toronto/Hamilton"/> -->
+            <div class="caption">
+              <h3>Toronto/Hamilton</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/toulouse/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Toulouse"/> -->
+            <div class="caption">
+              <h3>Toulouse</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/trento/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Trento"/> -->
+            <div class="caption">
+              <h3>Trento</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/turku/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Turku"/> -->
+            <div class="caption">
+              <h3>Turku</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/ulm/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Ulm"/> -->
+            <div class="caption">
+              <h3>Ulm</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/valencia/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Valencia"/> -->
+            <div class="caption">
+              <h3>Valencia</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/vancouver/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Vancouver"/> -->
+            <div class="caption">
+              <h3>Vancouver</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/vienna/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Vienna"/> -->
+            <div class="caption">
+              <h3>Vienna</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/vitoria-gasteiz/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Vitoria-Gasteiz"/> -->
+            <div class="caption">
+              <h3>Vitoria-Gasteiz</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/warsaw/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Warsaw"/> -->
+            <div class="caption">
+              <h3>Warsaw</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/washington/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Washington D.C."/> -->
+            <div class="caption">
+              <h3>Washington D.C.</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/wellington/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Wellington"/> -->
+            <div class="caption">
+              <h3>Wellington</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/westfalen-lippe/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Westfalen-Lippe"/> -->
+            <div class="caption">
+              <h3>Westfalen-Lippe</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/winnipeg/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Winnipeg"/> -->
+            <div class="caption">
+              <h3>Winnipeg</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/yamanashi/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Yamanashi Prefecture"/> -->
+            <div class="caption">
+              <h3>Yamanashi Prefecture</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+        
+        <div class="col-sm-6 col-md-4 col-xs-12">
+          <a href="/zagreb/" class="thumbnail">
+            <!-- <img src="#" alt="Mapnificent Zagreb"/> -->
+            <div class="caption">
+              <h3>Zagreb</h3>
+            </div>
+          </a>
+        </div>
+        
+      
+    </div>
+  </div>
+
+</div>
+
+<div id="about" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title text-center">
+          <img src="/static/img/mapnificent_big.png" alt="Mapnificent" class="img-responsive"/>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Mapnificent shows you the area you can reach with public transport from any point in a given time. It is available for major cities in the US and world wide.
+        </p>
+        <p>
+          This is the new version of Mapnificent with many missing features!
+          <a href="https://github.com/mapnificent/mapnificent">Find the source on GitHub and help out!</a>
+        </p>
+        <h3>Want to add your city?</h3>
+        <p>
+          <a href="https://github.com/mapnificent/mapnificent_cities/blob/master/README.md">
+             Follow this guide!
+          </a>
+        </p>
+        <p>
+          Mapnificent was originally inspired by mySociety's <a href="https://mapumental.com">Mapumental</a>.
+        </p>
+        <address id="contact">
+          <p>Mapnificent was created by <a class="url" href="http://stefanwehrmeyer.com" title="Stefan Wehrmeyer">Stefan Wehrmeyer</a>.</p>
+          <p>
+            <a class="email" href="mailto:mail@mapnificent.net">mail@mapnificent.net</a>
+          </p>
+          <p>
+            <a href="https://stefanwehrmeyer.com/#impressum">Impressum</a>
+          </p>
+        </address>
+        <p>
+          Follow <a href="http://twitter.com/mapnificent">@mapnificent on Twitter!</a>
+        </p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<footer class="footer">
+  <div class="container">
+    <a href="http://stefanwehrmeyer.com/#impressum">Impressum</a>
+  </div>
+</footer>
+
+<script src="/static/vendor/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+  $('#map').height($(window).height() - 200);
+
+  $('.smooth-scroll').click(function(e) {
+    e.preventDefault();
+    //calculate destination place
+    var dest = 0;
+    if ($(this.hash).offset().top > $(document).height() - $(window).height()) {
+        dest = $(document).height() - $(window).height();
+    } else {
+        dest = $(this.hash).offset().top;
+    }
+    //go to destination
+    $('html,body').animate({
+        scrollTop: dest
+    }, 1000, 'swing');
+  });
+
+  var tileUrl = '//cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
+  L.Icon.Default.imagePath = '/static/vendor/leaflet/dist/images/';
+  var map = L.map('map', {
+    center: [20, 11],
+    zoom: 2,
+    scrollWheelZoom: false
+  });
+  defaultTileLayer = new L.TileLayer(tileUrl, {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'});
+  map.attributionControl.setPrefix("");
+  map.addLayer(defaultTileLayer);
+
+  var marker, coords;
+  
+    
+      coords = [6.083611,50.776667];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="aachen/">Aachen</a></h2>');
+      }
+    
+  
+    
+      coords = [138.6205556,-34.9305556];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="adelaide/">Adelaide</a></h2>');
+      }
+    
+  
+    
+      coords = [-149.9,61.216667];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="anchorage/">Anchorage</a></h2>');
+      }
+    
+  
+    
+      coords = [-83.7263294,42.2708716];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="annarbor/">Ann Arbor</a></h2>');
+      }
+    
+  
+    
+      coords = [-82.554015,35.6009452];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="asheville/">Asheville, NC</a></h2>');
+      }
+    
+  
+    
+      coords = [-84.387,33.748];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="atlanta/">Atlanta</a></h2>');
+      }
+    
+  
+    
+      coords = [174.766,-36.84765];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="auckland/">Auckland</a></h2>');
+      }
+    
+  
+    
+      coords = [-97.7385,30.2644];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="austin/">Austin</a></h2>');
+      }
+    
+  
+    
+      coords = [-76.6121893,39.2903848];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="baltimore/">Baltimore</a></h2>');
+      }
+    
+  
+    
+  
+    
+  
+    
+      coords = [2.170046,41.38693];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="barcelona/">Barcelona</a></h2>');
+      }
+    
+  
+    
+      coords = [-121.99356079101562,37.34941777989473];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="bayarea/">Bay Area</a></h2>');
+      }
+    
+  
+    
+      coords = [4.37255859375,50.84583876895451];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="belgium/">Belgium</a></h2>');
+      }
+    
+  
+    
+      coords = [13.369545,52.525592];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="berlin/">Berlin</a></h2>');
+      }
+    
+  
+    
+      coords = [-80.40618896484375,37.21994010868952];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="blacksburg/">Blacksburg</a></h2>');
+      }
+    
+  
+    
+      coords = [11.351389,44.5075];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="bologna/">Bologna</a></h2>');
+      }
+    
+  
+    
+      coords = [11.3547582,46.4982953];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="bolzano/">Bolzano/Bozen</a></h2>');
+      }
+    
+  
+    
+      coords = [-0.57918,44.837789];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="bordeaux/">Bordeaux</a></h2>');
+      }
+    
+  
+    
+      coords = [-71.0597732,42.3584308];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="boston/">Boston</a></h2>');
+      }
+    
+  
+    
+      coords = [153.03,-27.48];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="brisbane/">Brisbane</a></h2>');
+      }
+    
+  
+    
+      coords = [-123.936389,49.164167];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="british-columbia/">British Columbia</a></h2>');
+      }
+    
+  
+    
+      coords = [19.040235,47.497912];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="budapest/">Budapest</a></h2>');
+      }
+    
+  
+    
+      coords = [-58.381559,-34.603684];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="buenos-aires/">Buenos Aires</a></h2>');
+      }
+    
+  
+    
+      coords = [-78.87977600097656,42.89709460316193];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="buffalo/">Buffalo</a></h2>');
+      }
+    
+  
+    
+      coords = [-114.0572222,51.045];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="calgary/">Calgary</a></h2>');
+      }
+    
+  
+    
+      coords = [149.1286843,-35.2819998];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="canberra/">Canberra</a></h2>');
+      }
+    
+  
+    
+  
+    
+      coords = [98.981716,18.706064];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="chiang-mai/">Chiang Mai</a></h2>');
+      }
+    
+  
+    
+      coords = [-87.6249,41.8747];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="chicago/">Chicago</a></h2>');
+      }
+    
+  
+    
+      coords = [172.620278,-43.53];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="christchurch/">Christchurch</a></h2>');
+      }
+    
+  
+    
+      coords = [-84.510647,39.101407];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="cincinnati/">Cincinnati</a></h2>');
+      }
+    
+  
+    
+      coords = [-81.6954088,41.4994954];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="cleveland/">Cleveland</a></h2>');
+      }
+    
+  
+    
+      coords = null;
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="coimbra/">Coimbra</a></h2>');
+      }
+    
+  
+    
+      coords = [6.961212158203125,50.93593091109999];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="cologne/">Cologne</a></h2>');
+      }
+    
+  
+    
+      coords = [-104.8213634,38.8338816];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="coloradosprings/">Colorado Springs</a></h2>');
+      }
+    
+  
+    
+      coords = [-82.9987942,39.9611755];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="columbus/">Columbus</a></h2>');
+      }
+    
+  
+    
+      coords = [-96.7655,32.7994];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="dallas/">Dallas</a></h2>');
+      }
+    
+  
+    
+      coords = [130.84150314331055,-12.461887939161151];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="darwin/">Darwin</a></h2>');
+      }
+    
+  
+    
+      coords = [-75.36312103275235,39.217492258914845];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="delaware/">Delaware</a></h2>');
+      }
+    
+  
+    
+      coords = [-104.9847034,39.7391536];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="denver/">Denver</a></h2>');
+      }
+    
+  
+    
+      coords = [-83.06007385253906,42.34535034292539];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="detroit/">Detroit</a></h2>');
+      }
+    
+  
+    
+      coords = [-6.26,53.35];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="dublin/">Dublin</a></h2>');
+      }
+    
+  
+    
+      coords = [-113.490452,53.543564];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="edmonton/">Edmonton</a></h2>');
+      }
+    
+  
+    
+      coords = [-123.085327148,44.0461415751];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="eugene/">Eugene</a></h2>');
+      }
+    
+  
+    
+      coords = null;
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="fayetteville-ar/">Fayetteville</a></h2>');
+      }
+    
+  
+    
+      coords = [7.849881,47.994828];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="freiburg/">Freiburg</a></h2>');
+      }
+    
+  
+    
+      coords = [8.93414,44.40747];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="genova/">genova</a></h2>');
+      }
+    
+  
+    
+      coords = [5.7378795,45.1874928];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="grenoble/">Grenoble</a></h2>');
+      }
+    
+  
+    
+      coords = [-63.602943420410156,44.65168087075498];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="halifax/">Halifax</a></h2>');
+      }
+    
+  
+    
+      coords = [9.993333,53.550556];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="hamburg/">Hamburg</a></h2>');
+      }
+    
+  
+    
+      coords = [-76.2835693359375,36.859295781306294];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="hampton/">Hampton</a></h2>');
+      }
+    
+  
+    
+      coords = [-157.858333,21.306944];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="honolulu/">Honolulu</a></h2>');
+      }
+    
+  
+    
+      coords = [-95.372,29.757];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="houston/">Houston</a></h2>');
+      }
+    
+  
+    
+      coords = [34.783333,32.066667];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="israel/">Israel</a></h2>');
+      }
+    
+  
+    
+      coords = [-94.5724,39.0949];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="kansascity/">Kansas City</a></h2>');
+      }
+    
+  
+    
+      coords = [8.403951,49.00921];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="karlsruhe/">Karlsruhe</a></h2>');
+      }
+    
+  
+    
+      coords = null;
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="kuala-lumpur/">Kuala Lumpur</a></h2>');
+      }
+    
+  
+    
+      coords = [-115.172816,36.114646];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="lasvegas/">Las Vegas</a></h2>');
+      }
+    
+  
+    
+      coords = [12.37475,51.340333];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="leipzig/">Leipzig</a></h2>');
+      }
+    
+  
+    
+      coords = [-9.139444,38.713889];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="lisboa/">Lisboa</a></h2>');
+      }
+    
+  
+    
+      coords = [-92.288,34.746];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="littlerock/">Little Rock, AR</a></h2>');
+      }
+    
+  
+    
+      coords = [-0.128317,51.500515];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="london/">London</a></h2>');
+      }
+    
+  
+    
+      coords = [-118.24759121704102,34.03871102842687];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="losangeles/">Los Angeles</a></h2>');
+      }
+    
+  
+    
+      coords = [-89.4012302,43.0730517];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="madison/">Madison</a></h2>');
+      }
+    
+  
+    
+      coords = [-3.7003454,40.4166909];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="madrid/">Madrid</a></h2>');
+      }
+    
+  
+    
+      coords = [-2.2343765,53.4807125];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="manchester/">Greater Manchester</a></h2>');
+      }
+    
+  
+    
+      coords = [144.96328,-37.814107];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="melbourne/">Melbourne</a></h2>');
+      }
+    
+  
+    
+      coords = [-99.133208,19.432608];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="mexico-city/">Mexico City</a></h2>');
+      }
+    
+  
+    
+      coords = [-80.2235,25.7863];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="miami/">Miami</a></h2>');
+      }
+    
+  
+    
+      coords = [9.185924,45.465422];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="milan/">Milan</a></h2>');
+      }
+    
+  
+    
+      coords = [-87.9064736,43.0389025];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="milwaukee/">Milwaukee</a></h2>');
+      }
+    
+  
+    
+      coords = [-93.2638361,44.9799654];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="minneapolis/">Minneapolis</a></h2>');
+      }
+    
+  
+    
+      coords = [-73.564453125,45.506828120969516];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="montreal/">Montréal</a></h2>');
+      }
+    
+  
+    
+      coords = [11.575556,48.137222];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="muenchen/">München</a></h2>');
+      }
+    
+  
+    
+      coords = [36.816667,-1.283333];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nairobi/">Nairobi</a></h2>');
+      }
+    
+  
+    
+      coords = [6.184417,48.692054];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nancy/">Nancy</a></h2>');
+      }
+    
+  
+    
+      coords = [-1.553621,47.218371];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nantes/">Nantes</a></h2>');
+      }
+    
+  
+    
+      coords = [-86.77825927734375,36.17113976708937];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nashville/">Nashville</a></h2>');
+      }
+    
+  
+    
+      coords = [4.890444,52.370197];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="netherlands/">Netherlands</a></h2>');
+      }
+    
+  
+    
+  
+    
+  
+    
+      coords = [-73.998,40.729];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="newyork/">New York</a></h2>');
+      }
+    
+  
+    
+      coords = [7.261953,43.710173];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nice/">Nice</a></h2>');
+      }
+    
+  
+    
+      coords = [11.078611,49.455556];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="nuernberg/">Nürnberg</a></h2>');
+      }
+    
+  
+    
+      coords = [-117.842826,33.645967];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="orange-county/">Orange County</a></h2>');
+      }
+    
+  
+    
+      coords = [-81.379236,28.538335];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="orlando/">Orlando</a></h2>');
+      }
+    
+  
+    
+      coords = [10.75,59.95];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="oslo/">Oslo</a></h2>');
+      }
+    
+  
+    
+      coords = [-75.69305419921875,45.41821440055197];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="ottawa/">Ottawa</a></h2>');
+      }
+    
+  
+    
+      coords = [13.361267,38.115688];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="palermo/">Palermo</a></h2>');
+      }
+    
+  
+    
+      coords = [2.3522219,48.856614];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="paris/">Paris</a></h2>');
+      }
+    
+  
+    
+      coords = [9.158207,45.184725];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="pavia/">Pavia</a></h2>');
+      }
+    
+  
+    
+      coords = [115.85898,-31.95588];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="perth/">Perth</a></h2>');
+      }
+    
+  
+    
+      coords = [-75.1588,39.9471];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="philadelphia/">Philadelphia</a></h2>');
+      }
+    
+  
+    
+      coords = [-79.9958864,40.4406248];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="pittsburgh/">Pittsburgh</a></h2>');
+      }
+    
+  
+    
+      coords = [-122.6713,45.5203];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="portland/">Portland</a></h2>');
+      }
+    
+  
+    
+      coords = [14.4667,50.0833];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="prague/">Prague</a></h2>');
+      }
+    
+  
+    
+      coords = [-78.70742797849688,35.871803261553104];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="raleigh/">Raleigh/Durham</a></h2>');
+      }
+    
+  
+    
+      coords = [9.60645,47.78441];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="ravensburg/">Ravensburg</a></h2>');
+      }
+    
+  
+    
+      coords = [12.096944,49.017222];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="regensburg/">Regensburg</a></h2>');
+      }
+    
+  
+    
+      coords = [-1.6802654,48.1117611];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="rennes/">Rennes</a></h2>');
+      }
+    
+  
+    
+      coords = [8.477522,49.483142];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="rhein-neckar/">Rhein-Neckar</a></h2>');
+      }
+    
+  
+    
+      coords = [6.782778,51.225556];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="rhein-ruhr/">Rhein-Ruhr</a></h2>');
+      }
+    
+  
+    
+      coords = [-77.6109219,43.16103];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="rochester/">Rochester</a></h2>');
+      }
+    
+  
+    
+      coords = [12.5,41.9];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="rome/">Rome</a></h2>');
+      }
+    
+  
+    
+      coords = [-121.36871320019532,38.57769477436337];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sacramento/">Sacramento</a></h2>');
+      }
+    
+  
+    
+      coords = [-123.0350963,44.9428975];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="salem-or/">Salem, OR</a></h2>');
+      }
+    
+  
+    
+      coords = [-111.8910474,40.7607793];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="saltlakecity/">Salt Lake City</a></h2>');
+      }
+    
+  
+    
+      coords = [-117.1534,32.711];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sandiego/">San Diego</a></h2>');
+      }
+    
+  
+    
+  
+    
+  
+    
+      coords = [-120.6596156,35.2827524];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sanluisobispo/">San Luis Obispo</a></h2>');
+      }
+    
+  
+    
+      coords = [-46.6388182,-23.5489433];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="saopaulo/">São Paulo</a></h2>');
+      }
+    
+  
+    
+      coords = [-82.5306527,27.3364347];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sarasota/">Sarasota</a></h2>');
+      }
+    
+  
+    
+      coords = [-122.2974175659179,47.6038889353024];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="seattle/">Seattle</a></h2>');
+      }
+    
+  
+    
+      coords = [-122.93,38.51];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sonoma/">Sonoma County</a></h2>');
+      }
+    
+  
+    
+      coords = [-3.689557,40.405638];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="spain/">Spain</a></h2>');
+      }
+    
+  
+    
+      coords = [-117.4260466,47.6587802];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="spokane/">Spokane</a></h2>');
+      }
+    
+  
+    
+      coords = [5.7331073,58.9699756];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="stavanger/">Stavanger</a></h2>');
+      }
+    
+  
+    
+      coords = [-90.224967,38.646991];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="stlouis/">St. Louis</a></h2>');
+      }
+    
+  
+    
+      coords = null;
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="strasbourg/">Strasbourg</a></h2>');
+      }
+    
+  
+    
+      coords = [9.182778,48.775556];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="stuttgart/">Stuttgart</a></h2>');
+      }
+    
+  
+    
+      coords = [18.068611,59.329444];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="sweden/">Sweden</a></h2>');
+      }
+    
+  
+    
+      coords = [8.54226,47.37174];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="switzerland/">Switzerland</a></h2>');
+      }
+    
+  
+    
+  
+    
+      coords = [24.75353,59.43696];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="tallinn/">Tallinn</a></h2>');
+      }
+    
+  
+    
+      coords = [-82.4651441,27.949436];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="tampa/">Tampa</a></h2>');
+      }
+    
+  
+    
+      coords = null;
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="telaviv/">Tel Aviv</a></h2>');
+      }
+    
+  
+    
+      coords = [11.32487,50.9911];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="thuringia/">Thüringen</a></h2>');
+      }
+    
+  
+    
+      coords = [7.6866186,45.0705621];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="torino/">Torino</a></h2>');
+      }
+    
+  
+    
+      coords = [-79.32472228998127,43.716527305038205];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="toronto/">Toronto/Hamilton</a></h2>');
+      }
+    
+  
+    
+      coords = [1.444,43.604];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="toulouse/">Toulouse</a></h2>');
+      }
+    
+  
+    
+      coords = [11.12576,46.06642];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="trento/">Trento</a></h2>');
+      }
+    
+  
+    
+      coords = [22.264824,60.45451];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="turku/">Turku</a></h2>');
+      }
+    
+  
+    
+      coords = [9.984155518556122,48.39891316440014];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="ulm/">Ulm</a></h2>');
+      }
+    
+  
+    
+      coords = [-0.3768049,39.4702393];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="valencia/">Valencia</a></h2>');
+      }
+    
+  
+    
+      coords = [-123.1088,49.248523];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="vancouver/">Vancouver</a></h2>');
+      }
+    
+  
+    
+      coords = [16.373064,48.20833];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="vienna/">Vienna</a></h2>');
+      }
+    
+  
+    
+      coords = [-2.6716351,42.8467181];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="vitoria-gasteiz/">Vitoria-Gasteiz</a></h2>');
+      }
+    
+  
+    
+      coords = [21.012229,52.229676];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="warsaw/">Warsaw</a></h2>');
+      }
+    
+  
+    
+      coords = [-77.0351,38.8977];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="washington/">Washington D.C.</a></h2>');
+      }
+    
+  
+    
+      coords = [174.78012084960938,-41.29328546081614];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="wellington/">Wellington</a></h2>');
+      }
+    
+  
+    
+      coords = [7.628694,51.962944];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="westfalen-lippe/">Westfalen-Lippe</a></h2>');
+      }
+    
+  
+    
+  
+    
+      coords = [-97.152921,49.886083];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="winnipeg/">Winnipeg</a></h2>');
+      }
+    
+  
+    
+      coords = [138.568449,35.664158];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="yamanashi/">Yamanashi Prefecture</a></h2>');
+      }
+    
+  
+    
+      coords = [15.981919,45.81501];
+      if (coords) {
+        marker = L.marker([coords[1], coords[0]]).addTo(map);
+        marker.bindPopup('<h2><a href="zagreb/">Zagreb</a></h2>');
+      }
+    
+  
+
+</script>
+
+
+   <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+   <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-15128105-1', 'auto');
+     ga('send', 'pageview');
+
+   </script>
+
+  </body>
+</html>
