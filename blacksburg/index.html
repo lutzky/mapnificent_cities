@@ -5,15 +5,15 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <title>Blacksburg – Mapnificent – Dynamic Public Transport Travel Time Maps</title>
 
-    <link rel="icon" type="image/png" href="/static/img/favicon.png" />
-    <link href="/static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen,projection" />
-    <link rel="stylesheet" href="/static/vendor/leaflet/dist/leaflet.css">
-    <link href="/static/css/screen.css" rel="stylesheet" type="text/css" media="screen,projection" />
+    <link rel="icon" type="image/png" href="/mapnificent_cities/static/img/favicon.png" />
+    <link href="/mapnificent_cities/static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" href="/mapnificent_cities/static/vendor/leaflet/dist/leaflet.css">
+    <link href="/mapnificent_cities/static/css/screen.css" rel="stylesheet" type="text/css" media="screen,projection" />
 
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content="Mapnificent Isochrone Maps Travel Time Public Transport" />
     <meta name="description" content="Mapnificent shows you areas you can reach with public transport in many cities all over the world." />
-    <script src="/static/vendor/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/mapnificent_cities/static/vendor/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript" charset="utf-8">
       var Mapnificent_cities = (function(){
@@ -929,7 +929,7 @@
           <a data-toggle="modal" href="#about">About</a>
         </li>
         <li>
-          <a href="/">More Cities</a>
+          <a href="/mapnificent_cities/">More Cities</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -980,7 +980,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title text-center">
-          <img src="/static/img/mapnificent_big.png" alt="Mapnificent" class="img-responsive"/>
+          <img src="/mapnificent_cities/static/img/mapnificent_big.png" alt="Mapnificent" class="img-responsive"/>
         </h4>
       </div>
       <div class="modal-body">
@@ -1057,12 +1057,12 @@
 </div><!-- /.modal -->
 
 
-<script src="/static/vendor/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/vendor/leaflet-hash/leaflet-hash.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/vendor/bytebuffer/dist/ByteBufferAB.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/vendor/protobuf/dist/ProtoBuf.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/quadtree.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/js/mapnificent.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/vendor/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/vendor/leaflet-hash/leaflet-hash.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/vendor/bytebuffer/dist/ByteBufferAB.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/vendor/protobuf/dist/ProtoBuf.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/js/quadtree.js" type="text/javascript" charset="utf-8"></script>
+<script src="/mapnificent_cities/static/js/mapnificent.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
 
@@ -1078,7 +1078,7 @@ $(function(){
 
   var tileUrl = '//cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
 
-  L.Icon.Default.imagePath = '/static/vendor/leaflet/dist/images/';
+  L.Icon.Default.imagePath = '/mapnificent_cities/static/vendor/leaflet/dist/images/';
   var map = L.map('mapnificent-map', {
     center: [city.coordinates[1], city.coordinates[0]],
     zoom: city.zoom
@@ -1091,7 +1091,7 @@ $(function(){
   map.addLayer(defaultTileLayer);
 
   var mapnificent = new Mapnificent(map, city, {
-    baseurl: '/'
+    baseurl: '/mapnificent_cities/'
   });
 
   mapnificent.init();
@@ -1100,7 +1100,7 @@ $(function(){
 </script>
 
 
-   <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="/mapnificent_cities/static/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 
    <script>
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
